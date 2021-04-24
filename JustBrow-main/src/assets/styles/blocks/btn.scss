@@ -1,0 +1,40 @@
+.btn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: #000;
+    border-radius: $radiusBtn;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 15px;
+    cursor: pointer;
+    &:hover{
+        background: linear-gradient(360deg, #B88BE4 0%, #FFC9E3 100%);
+        color: #fff;
+    }
+
+    &-border{
+        background: #fff;
+        box-shadow: 0 0 1px 1px rgba(38,32,66,.5);
+        &:hover{
+            box-shadow: 0 0 1px 1px rgba(38,32,66,0);
+        }
+        
+    }
+    &-grad{
+        background: linear-gradient(360deg, #B88BE4 0%, #FFC9E3 100%);
+        color: #fff;
+        transition: $transition4;
+    &:hover{
+        background: linear-gradient(360deg, darken(#B88BE4, 15%) 0%, #FFC9E3 100%);
+        color: $dark;
+        }
+    }
+}
+@media screen and (max-width:991px){
+    .btn{
+        font-weight: 700;
+    }
+}
