@@ -15,26 +15,12 @@
 get_header();
 ?>
 
+<h1>1111</h1>
+
 
 <?php get_template_part('template-parts/sections/banner'); ?>
 
 
-<?php get_template_part('template-parts/sections/catalog-block'); ?>
-
-
-<?php get_template_part('template-parts/sections/product-block'); ?>
-
-
-<?php get_template_part('template-parts/sections/reviews-block'); ?>
-
-
-<?php get_template_part('template-parts/sections/news-block'); ?>
-
-
-<?php get_template_part('template-parts/sections/region'); ?>
-
-
-<?php get_template_part('template-parts/sections/text-block'); ?>
 
 
 <?php

@@ -94,8 +94,8 @@ if ( ! function_exists( 'justbrow_setup' ) ) :
 		add_theme_support(
 			'custom-logo',
 			array(
-				'height'      => 250,
-				'width'       => 250,
+				'height'      => 180,
+				'width'       => 173,
 				'flex-width'  => true,
 				'flex-height' => true,
 			)
@@ -141,13 +141,18 @@ add_action( 'widgets_init', 'justbrow_widgets_init' );
  */
 function justbrow_scripts() {
 	wp_enqueue_style( 'justbrow-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'justbrow-style', 'rtl', 'replace' );
+//	wp_style_add_data( 'justbrow-style', 'rtl', 'replace' );
+    wp_enqueue_style( 'style-vendors', get_template_directory_uri() . '/assets/css/vendors~main.css', '', '' );
+    wp_enqueue_style( 'style-main', get_template_directory_uri() . '/assets/css/main.css', '', '' );
 
 	wp_enqueue_script( 'justbrow-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+    wp_enqueue_style( 'style-vendors', get_template_directory_uri() . '/assets/css/vendors~main.css', '', '' );
+    wp_enqueue_style( 'style-main', get_template_directory_uri() . '/assets/css/main.css', '', '' );
+
+    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+        wp_enqueue_script( 'comment-reply' );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'justbrow_scripts' );
 
@@ -178,3 +183,47 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+
+
+
+
+/**
+ * Customize breadcrumbs.
+ */
+require get_template_directory() . '/inc/customize/breadcrumbs.php';
+
+
+/**
+ * Customize pagination.
+ */
+require get_template_directory() . '/inc/customize/pagination.php';
+
+
+/**
+ * Customize theme-options
+ */
+require get_template_directory() . '/inc/customize/theme-options.php';
+
+
+/**
+ * Customize fix upload svg files
+ */
+require get_template_directory() . '/inc/customize/fix-svg.php';
+
+
+/**
+ * Customize post views
+ */
+require get_template_directory() . '/inc/customize/post-views.php';
+
+
+/*
+ * excerpt_length
+ */
+require get_template_directory() . '/inc/customize/excerpt.php';
+
+
+/*
+ * Rating
+ */
+require get_template_directory() . '/inc/customize/rating.php';
