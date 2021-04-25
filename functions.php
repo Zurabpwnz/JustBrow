@@ -147,8 +147,8 @@ function justbrow_scripts() {
 
 	wp_enqueue_script( 'justbrow-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-    wp_enqueue_style( 'style-vendors', get_template_directory_uri() . '/assets/css/vendors~main.css', '', '' );
-    wp_enqueue_style( 'style-main', get_template_directory_uri() . '/assets/css/main.css', '', '' );
+    wp_enqueue_script( 'script-vendors', get_template_directory_uri() . '/assets/js/vendors~main.js', '', '' );
+    wp_enqueue_script( 'script-main', get_template_directory_uri() . '/assets/js/main.js', '', '' );
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
@@ -227,3 +227,31 @@ require get_template_directory() . '/inc/customize/excerpt.php';
  * Rating
  */
 require get_template_directory() . '/inc/customize/rating.php';
+
+
+
+// удаляет H2 из шаблона пагинации
+add_filter( 'navigation_markup_template', 'my_navigation_template', 10, 2 );
+function my_navigation_template( $template, $class ) {
+    /*
+    Вид базового шаблона:
+    <nav class="navigation %1$s" role="navigation">
+        <h2 class="screen-reader-text">%2$s</h2>
+        <div class="nav-links">%3$s</div>
+    </nav>
+    */
+
+    return '
+	<nav class="navigation %1$s" role="navigation">
+		<div class="nav-links">%3$s</div>
+	</nav>
+	';
+}
+
+
+/* размеры изображений */
+add_image_size( 'service-thumb', 240, 240, true );
+//add_image_size( 'article-thumb', 325, 460, true );
+//add_image_size( 'reviews-thumb', 130, 100, true );
+//add_image_size( 'category-thumb', 345, 480, true );
+//add_image_size( 'object-thumb', 440, 400, true );

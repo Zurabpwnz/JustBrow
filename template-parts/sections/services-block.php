@@ -1,29 +1,28 @@
-<section class="services-block">
-    <div class="services-block__items">
-        <div class="services-item">
-            <div class="services-item__wrapper"><a href="#" class="services-item__img bg-gradient"><img src="img/s1.jpg" alt=""> </a><a href="#" class="services-item__name">Перманентный макияж</a>
-                <p class="services-item__price">от 2000 ₽</p>
-            </div>
+<?php
+
+$ID = get_the_ID();
+
+$post_objects = get_field('uslugi_na_404', 'option');
+
+if ($post_objects): ?>
+    <section class="services-block">
+        <div class="services-block__items">
+            <?php foreach ($post_objects as $post): // Переменная должна быть названа обязательно $post (IMPORTANT) ?>
+                <?php setup_postdata($post); ?>
+
+                <div class="services-item">
+                    <div class="services-item__wrapper">
+                        <a href="<?php the_permalink(); ?>" class="services-item__img bg-gradient">
+                            <?php the_post_thumbnail('service-thumb');?></a>
+                        <a href="<?php the_permalink(); ?>" class="services-item__name"><?php the_title(); ?></a>
+                        <p class="services-item__price"><?php the_field('czena_uslugi');?></p>
+                    </div>
+                </div>
+
+            <?php endforeach; ?>
         </div>
-        <div class="services-item">
-            <div class="services-item__wrapper"><a href="#" class="services-item__img bg-gradient"><img src="img/s2.jpg" alt=""> </a><a href="#" class="services-item__name">Уход за бровями</a>
-                <p class="services-item__price">от 200 ₽</p>
-            </div>
-        </div>
-        <div class="services-item">
-            <div class="services-item__wrapper"><a href="#" class="services-item__img bg-gradient"><img src="img/s3.jpg" alt=""> </a><a href="#" class="services-item__name">Комплексные услуги</a>
-                <p class="services-item__price">от 900 ₽</p>
-            </div>
-        </div>
-        <div class="services-item">
-            <div class="services-item__wrapper"><a href="#" class="services-item__img bg-gradient"><img src="img/s4.jpg" alt=""> </a><a href="#" class="services-item__name">Депиляция</a>
-                <p class="services-item__price">от 200 ₽</p>
-            </div>
-        </div>
-        <div class="services-item">
-            <div class="services-item__wrapper"><a href="#" class="services-item__img bg-gradient"><img src="img/s5.jpg" alt=""> </a><a href="#" class="services-item__name">Уход за ресницами</a>
-                <p class="services-item__price">от 400 ₽</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+    <?php wp_reset_postdata(); // ВАЖНО - сбросьте значение $post object чтобы избежать ошибок в дальнейшем коде ?>
+<?php endif;
+
+?>

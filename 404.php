@@ -11,9 +11,10 @@ get_header();
 ?>
 
     <section class="page404">
-        <div class="page404__img"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/404.svg"
-                                       alt=""></div>
-        <h1 class="page404__title">что то пошло не так, страница не найдена.<br>Но есть много товаров в каталоге</h1>
+        <div class="page404__img">
+            <img src="<?php the_field('img-404', 'option'); ?>" alt="404">
+        </div>
+        <h1 class="page404__title"><?php the_field('error-desc', 'option'); ?></h1>
     </section>
 
 
